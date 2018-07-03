@@ -6,9 +6,10 @@ using System.Web;
 
 namespace SuperHeros.Models
 {
-    public class SuperHero
+    public class SuperHero 
     {
         [Key]
+        public int ID { get; set; }
         public string Name { get; set; }
         public string AlterEgo { get; set; }
         public string PrimaryAbility{ get; set; }

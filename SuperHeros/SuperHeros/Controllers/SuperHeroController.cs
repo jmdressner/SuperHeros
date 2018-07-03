@@ -49,10 +49,28 @@ namespace SuperHeros.Controllers
         }
 
         [HttpGet]
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            ApplicationDbContext db = new ApplicationDbContext();
+            var hero = db.SuperHero.Where(h => h.ID == id).FirstOrDefault();
+
+            if (hero == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(hero);
+        }
+
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-            var hero = db.SuperHero.Where(h => h.ID == id).First();
+            var hero = db.SuperHero.Where(h => h.ID == id).FirstOrDefault();
             return View(hero);
         }
 
